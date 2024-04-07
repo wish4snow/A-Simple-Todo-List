@@ -1,13 +1,12 @@
 #include <vector>
-#include <tuple>
 #include <string>
+#include "item.hpp"
 
 using namespace std;
 
 class TodoList{
 	private:
-		vector<string> items;
-		vector<bool> isComplete;
+		vector<Item> items;
 	public:
 		TodoList();
 

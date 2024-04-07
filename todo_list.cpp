@@ -1,19 +1,64 @@
 #include <iostream>
 #include "todo_list.hpp"
 #include <vector>
-#include <tuple>
 
 using namespace std;
+
 TodoList::TodoList(){
-	// this->items;
-	// this->isComplete;
 }
+
 
 void TodoList::add(string item) {
-	this->items.push_back(item);
-	this->isComplete.push_back(false);
+
+	this->items.push_back(Item(item));
 }
 
-void TodoList::all(){
-	cout << this->items[0] << endl;
+
+void TodoList::complete(string item) {
+	vector<Item>::iterator itemsPtr;
+
+	for (itemsPtr = items.begin();itemsPtr < items.end(); itemsPtr++) {
+		if (itemsPtr->toString() == item) {
+			itemsPtr->setComplete();
+		}
+
+	}
+	
 }
+
+
+void TodoList::all(){ 
+	vector<Item>::iterator ptr;
+
+	for (ptr = items.begin();ptr < items.end(); ptr++) {
+		cout << ptr->toString() << endl;
+	}
+}
+
+
+void TodoList::complete() {
+	vector<Item>::iterator itemsPtr;
+
+	for (itemsPtr = items.begin(); itemsPtr < items.end(); itemsPtr++) {
+		if (itemsPtr->isComplete()) {
+			cout << itemsPtr->toString() << endl;
+		}
+	}
+}
+
+
+void TodoList::incomplete() {
+	vector<Item>::iterator itemsPtr;
+
+	for (itemsPtr = items.begin(); itemsPtr < items.end(); itemsPtr++) {
+		if (!itemsPtr->isComplete()) {
+			cout << itemsPtr->toString() << endl;
+		}
+	}
+}
+
+
+void TodoList::clear() {
+	items.clear();
+}
+
